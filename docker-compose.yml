@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    container_name: url_bsd_17
+    restart: always
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/usr/src/app
+    environment:
+      DATABASE_URL: postgresql://postgres:root@localhost/warga_1-7
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: warga_1-7

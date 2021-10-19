@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>PENDAFTARAN DATA WARGA</title>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <img src="../static/1-7-2.png" alt="1.7" class="logo">
+        </h1>
+        <br/>
+        <h2 ALIGN="center">FORMULIR PENDAFTARAN DATA PRIBADI WARGA RW011 SEKTOR 1.7</h2>
+        <!-- @todo - message -->
+        {% if message %}
+        <p class="message">{{ message | safe }}</p>
+        {% else %}
+        <br/>
+        {% endif %}
+        <form action="/submit" method="POST">
+            <div class="form-group">
+                <h3>Nama Warga</h3>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Nama warga Sektor 1.7"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Kota Lahir</h3>
+                <input
+                    type="text"
+                    name="kota"
+                    placeholder="Nama kota tempat lahir"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Tanggal Lahir</h3>
+                <input
+                    type="date"
+                    name="date"
+                    placeholder="Tanggal lahir"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Jenis Kelamin</h3>
+                <input type="radio" name="kelamin" value="Laki-laki"checked /> Laki-laki
+                <input type="radio" name="kelamin" value="Perempuan"/> Perempuan
+            </div>
+            <div class="form-group">
+                <h3>Nomor Kartu Keluarga (KK)</h3>
+                <input
+                    type="integer"
+                    length="16"
+                    name="no_kk"
+                    placeholder="Nomor KK"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Nomor Induk Kependudukan (NIK)</h3>
+                <input
+                    type="integer"
+                    length="16"
+                    name="no_nik"
+                    placeholder="NIK"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Alamat KTP</h3>
+                <input
+                    type="text"
+                    name="alamatktp"
+                    placeholder="Alamat di KTP"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Kota KTP</h3>
+                <input
+                    type="text"
+                    name="kotaktp"
+                    placeholder="Nama kota di KTP"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Keanggotaan Keluarga Keluarga</h3>
+                <select name="anggota">
+                    <option value="">Pilih Keanggotaan Kartu Keluarga</option>
+                    <option value="Kepala Keluarga">Kepala Keluarga</option>
+                    <option value="Istri">Istri</option>
+                    <option value="Anak">Anak</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <h3>Lokasi Rumah Blok i / _</h3>
+                <input type="radio" name="blok_i_" value="1" checked /> 1
+                <input type="radio" name="blok_i_" value="2"/> 2
+                <input type="radio" name="blok_i_" value="3"/> 3
+                <input type="radio" name="blok_i_" value="4"/> 4
+                <input type="radio" name="blok_i_" value="5"/> 5
+            </div>
+            <div class="form-group">
+                <h3>Nomor Rumah</h3>
+                <input
+                    type="integer"
+                    name="no_rumah"
+                    placeholder="Nomor Rumah"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Status Rumah</h3>
+                <input type="radio" name="status_rumah" value="Rumah milik"checked /> Rumah milik
+                <input type="radio" name="status_rumah" value="Rumah kontrak"/> Rumah kontrak
+            </div>
+            <div class="form-group">
+                <h3>RT</h3>
+                <input type="radio" name="rt" value="01" checked /> 01
+                <input type="radio" name="rt" value="02"/> 02
+            </div>
+            <div class="form-group">
+                <h3>Pekerjaan</h3>
+                <input type="radio" name="pekerjaan" value="ASN"/> ASN
+                <input type="radio" name="pekerjaan" value="Karyawan Swasta"/> Karyawan Swasta
+                <input type="radio" name="pekerjaan" value="Wira Swasta"/> Wira Swasta
+                <input type="radio" name="pekerjaan" value="Pelajar/Mahasiswa"/> Pelajar/Mahasiswa
+                <input type="radio" name="pekerjaan" value="Lainnya"checked /> Lainnya
+            </div>
+            <div class="form-group">
+                <h3>Phone</h3>
+                <input
+                    type="text"
+                    name="phone"
+                    placeholder="Nomor Telepon (Handphone)"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Email</h3>
+                <input
+                    type="text"
+                    name="email"
+                    placeholder="Akun Email"
+                />
+            </div>
+            <input type="submit" value="Simpan" class="btn"/>
+        </form>
+        <a class="btn-act" href='/'>Kembali</a>
+    </div>
+</body>
+</html>

@@ -1,8 +1,13 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from send_mail import send_mail
+# from app import app, ssl
+# import ssl
 
 app = Flask(__name__)
+
+# ctx = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+# ctx.load_cert_chain('sertnew/se-emulator.crt', 'sertnew/se-emulator.key')
 
 ENV = 'dev'
 
@@ -100,4 +105,5 @@ def submit():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, ssl_context=ctx)
+    app.run(host='0.0.0.0', port=5000)
+    # app.run(host='0.0.0.0', port=5000, ssl_context=ctx)

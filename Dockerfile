@@ -7,6 +7,8 @@ COPY . /usr/src/app
 
 # COPY ./requirements.txt .
 # RUN pip install -r requirements.txt
+# RUN pip install pipenv
+# RUN pipenv shell
 RUN pip install flask
 # RUN pip install psycopg2
 RUN pip install psycopg2-binary

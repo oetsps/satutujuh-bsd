@@ -1,22 +1,18 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from send_mail import send_mail
-# from app import app, ssl
-# import ssl
 
 app = Flask(__name__)
 
-# ctx = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
-# ctx.load_cert_chain('sertnew/se-emulator.crt', 'sertnew/se-emulator.key')
 
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
-    app.debug = True
+    app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/warga_1-7'
 else:
-    app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@database/warga_1-7'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -106,4 +102,4 @@ def submit():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-    # app.run(host='0.0.0.0', port=5000, ssl_context=ctx)
+ 

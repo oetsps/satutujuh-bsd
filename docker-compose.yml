@@ -4,19 +4,22 @@ services:
     container_name: url_bsd_17
     restart: always
     build: .
-    depends_on:
-      - postgres
+    links:
+      - database
     ports:
       - '5000:5000'
     volumes:
       - .:/usr/src/app
-    environment:
-      DATABASE_URL: postgresql://postgres:root@localhost/warga_1-7
-  postgres:
-    container_name: postgres
+  database:
+    container_name: postgres_db
     image: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     environment:
       POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
       POSTGRES_DB: warga_1-7
+volumes:
+  db-data:

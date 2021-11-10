@@ -1,32 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
-    <title>PENDAFTARAN DATA WARGA</title>
-</head>
-<body>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Admin
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='daftar.css')}}">
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SEKTOR 1.7</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Activity<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Pengurus RW</a></li>
+                            <li><a href="#">Program</a></li>
+                            <li><a href="#">Perayaan & Silaturahim</a></li>
+                            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ url_for('wargalist') }}">Daftar Warga</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">Daftar</a></li>
+                    {% if name == 'admin' %}
+                    <li><a href="{{ url_for('home') }}">Settings</a></li>
+                    {% endif %}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">{{ name }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="{{ url_for('changepsw') }}">Change Password</a></li>
+                            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </form>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <h1>
+            <br/>
             <img src="../static/1-7-2.png" alt="1.7" class="logo">
         </h1>
         <br/>
         <h2 ALIGN="center">FORMULIR PENDAFTARAN DATA PRIBADI WARGA RW011 SEKTOR 1.7</h2>
-        <!-- @todo - message -->
-        {% if message %}
-        <p class="message">{{ message | safe }}</p>
+        {% if content %}
+        <p class="message">{{ content | safe }}</p>
         {% else %}
         <br/>
         {% endif %}
-        <form action="/submit" method="POST">
+        <form class="form-group" action="/submit" method="POST">
             <div class="form-group">
-                <h3>Nama Warga</h3>
+                <h3>Nama Lengkap</h3>
                 <input
                     type="text"
                     name="name"
-                    placeholder="Nama warga Sektor 1.7"
+                    placeholder="Nama lengkap warga"
+                />
+            </div>
+            <div class="form-group">
+                <h3>Alias</h3>
+                <input
+                    type="text"
+                    name="alias"
+                    placeholder="Nama panggilan sehari-hari"
                 />
             </div>
             <div class="form-group">
@@ -146,7 +200,5 @@
             </div>
             <input type="submit" value="Simpan" class="btn"/>
         </form>
-        <a class="btn-act" href='/'>Kembali</a>
     </div>
-</body>
-</html>
+{% endblock %}

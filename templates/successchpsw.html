@@ -34,11 +34,11 @@ Admin
                             <li><a href="#">Daftar Warga</a></li>
                         </ul>
                     </li>
-                    <li class="active"><a href="#">Daftar</a></li>
+                    <li><a href="#">Daftar</a></li>
                     {% if name == 'admin' %}
                     <li><a href="#">Settings</a></li>
                     {% endif %}
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a class="dropdown-toggle" data-toggle="dropdown">{{ name }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Profile</a></li>
@@ -60,7 +60,8 @@ Admin
             <img src="../static/1-7-2.png" alt="1.7" class="logo">
         </h1>
         <br/>
-        <h2 ALIGN="center">Terimakasih telah daftarkan data warga 1.7</h2>
-        <a class="btn-act" href="{{ url_for('daftar') }}">Daftar lagi</a>
+        <h2 ALIGN="center">Password berhasil diperbaharui</h2>
+        <!-- <a class="btn-act" href="{{ url_for('home') }}">Home</a> -->
+        <a class="btn btn-lg btn-primary btn-block" href="{{ url_for('home') }}">Home</a>
     </div>
 {% endblock %}

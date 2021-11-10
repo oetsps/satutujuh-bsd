@@ -1,4 +1,12 @@
 flask
+# psycopg2
 psycopg2-binary
-flask-sqlalchemy
+flask_bootstrap
+flask_wtf
+wtform
+email_validator
+flask_sqlalchemy
 gunicorn
+werkzeug
+flask_admin
+flask_login

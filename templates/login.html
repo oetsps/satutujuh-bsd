@@ -1,17 +1,19 @@
 {% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}
-Sektor 1.7 BSD
+Login
 {% endblock %}
 
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='starter-template.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
 {% endblock %}
 
 {% block content %}
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
+      <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -23,18 +25,18 @@ Sektor 1.7 BSD
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Activity<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Pengurus RW</a></li>
-                <li><a href="#">Program</a></li>
+                <li><a href="#">Gotong Royong</a></li>
                 <li><a href="#">Perayaan & Silaturahim</a></li>
                 <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ url_for('wargalist') }}">Daftar Warga</a></li>
               </ul>
             </li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li class="active"><a href="{{ url_for('login') }}">Login</a></li>
             <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -43,25 +45,24 @@ Sektor 1.7 BSD
 
     <div class="container">
 
-      <div class="starter-template">
-        <h1>
-          <img src="../static/1-7-2.png" alt="1.7" class="logo">
-      </h1><br/>
-      <h1>SELAMAT DATANG</h1>
-        <p class="lead">
-          Di Portal Warga RW011 Sektor 1.7 BSD
-          <br/> 
-          Kelurahan Lengkong Gudang Timur
-          <br/>
-          Kecamatan Serpong
-          <br/>
-          Kota Tangerang Selatan
-          <br/>
-          Provinsi BANTEN
-          <br/>
-          Kode-pos 15318
-        </p>
-      </div>
+      <form class="form-signin" method="POST" action="/login">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.password) }}
+        {{ wtf.form_field(form.remember) }}
 
-    </div><!-- /.container -->
+        <!-- <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div> -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
 {% endblock %}

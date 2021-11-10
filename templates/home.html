@@ -1,12 +1,12 @@
 {% extends "bootstrap/base.html" %}
 
 {% block title %}
-Admin
+Home
 {% endblock %}
 
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='daftar.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='home.css')}}">
 {% endblock %}
 
 {% block content %}
@@ -23,29 +23,32 @@ Admin
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li class="active"><a href="#">Home</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Activity<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Pengurus RW</a></li>
-                            <li><a href="#">Gotong Royong</a></li>
+                            <li><a href="#">Program</a></li>
                             <li><a href="#">Perayaan & Silaturahim</a></li>
                             <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-                            <li><a href="#">Daftar Warga</a></li>
+                            <li><a href="{{ url_for('wargalist') }}">Daftar Warga</a></li>
                         </ul>
                     </li>
-                    <li class="active"><a href="#">Daftar</a></li>
-                    {% if name == 'admin' %}
-                    <li><a href="#">Settings</a></li>
-                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('daftar') }}">Daftar</a></li>
+                        {% if current_user.username == 'admin' %}
+                        <li><a href="#">Setting</a></li>
+                        {% endif %}
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">{{ name }}<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown">{{ current_user.username }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Profile</a></li>
-                            <li><a href="#">Change Password</a></li>
+                            <li><a href="{{ url_for('changepsw') }}">Change Password</a></li>
                             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                         </ul>
-                    </li>
+                    {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% endif %}
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -55,12 +58,25 @@ Admin
     </nav>
 
     <div class="container">
-        <h1>
-            <br/>
+        <div class="starter-template">
+            <h1>
             <img src="../static/1-7-2.png" alt="1.7" class="logo">
-        </h1>
-        <br/>
-        <h2 ALIGN="center">Terimakasih telah daftarkan data warga 1.7</h2>
-        <a class="btn-act" href="{{ url_for('daftar') }}">Daftar lagi</a>
-    </div>
+            </h1><br/>
+            <h1>SELAMAT DATANG</h1>
+            <p class="lead">
+            Di Portal Warga RW011 Sektor 1.7 BSD
+            <br/> 
+            Kelurahan Lengkong Gudang Timur
+            <br/>
+            Kecamatan Serpong
+            <br/>
+            Kota Tangerang Selatan
+            <br/>
+            Provinsi BANTEN
+            <br/>
+            Kode-pos 15318
+            </p>
+        </div>
+
+    </div><!-- /.container -->
 {% endblock %}

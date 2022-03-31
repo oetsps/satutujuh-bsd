@@ -24,7 +24,7 @@ Change Password
       <a class="navbar-brand" href="#">SEKTOR 1.7</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ url_for('home') }}">Home</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Activity<span class="caret"></span></a>
@@ -41,7 +41,7 @@ Change Password
         <li><a href="{{ url_for('home') }}">Setting</a></li>
         {% endif %}
         <li class="dropdown active">
-            <a class="dropdown-toggle" data-toggle="dropdown">{{ current_user.username }}<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ current_user.username }}<span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">Change Password</a></li>
@@ -49,7 +49,10 @@ Change Password
             </ul>
         </li>
       </ul>
-    </div><!--/.nav-collapse -->
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" placeholder="Search...">
+    </form>
+</div><!--/.nav-collapse -->
   </div>
 </nav>
 
